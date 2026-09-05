@@ -145,13 +145,13 @@ Las ocho integraciones conservan la URL original del anuncio y normalizan sus da
 Cada integración puede actualizarse desde la terminal. Las búsquedas se pasan como una lista JSON:
 
 ```bash
-INFOJOBS_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:infojobs
-EMPLEATE_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:empleate
-TECNOEMPLEO_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:tecnoempleo
-JOBTODAY_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:jobtoday
-INFOEMPLEO_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:infoempleo
-EUROFIRMS_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:eurofirms
-INFOFEINA_SEARCHES='[{"keyword":"it","city":"Girona"}]' npm run refresh:infofeina
+INFOJOBS_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:infojobs
+EMPLEATE_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:empleate
+TECNOEMPLEO_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:tecnoempleo
+JOBTODAY_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:jobtoday
+INFOEMPLEO_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:infoempleo
+EUROFIRMS_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:eurofirms
+INFOFEINA_SEARCHES='[{"keyword":"it","city":"Madrid"}]' npm run refresh:infofeina
 FEINAACTIVA_SEARCHES='[{"url":"https://feinaactiva.gencat.cat/es/search/offers/list?keywords=it"}]' npm run refresh:feinaactiva
 ```
 
