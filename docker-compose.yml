@@ -1,0 +1,13 @@
+services:
+  buscador_trabajos:
+    image: ar0per0/buscador_trabajos:latest
+    container_name: buscador_trabajos
+    restart: unless-stopped
+    init: true
+    ports:
+      - "8085:8081"
+    volumes:
+      - buscador_trabajos_data:/data
+
+volumes:
+  buscador_trabajos_data:

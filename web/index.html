@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Trabajos</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Panel local</p>
+        <div class="hero-title"><h1><span id="totalJobs">0</span> Trabajos</h1><small id="infojobsUpdated">Sin buscar</small></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <nav id="profileShortcuts" class="profile-shortcuts" aria-label="Accesos directos a perfiles" hidden>
+      <strong>Perfiles</strong>
+      <div id="profileShortcutList"></div>
+      <div class="interest-links-block">
+        <button id="openInterestLinks" type="button" class="interest-links-manage">＋ Más enlaces</button>
+        <div id="interestLinkShortcuts" class="interest-link-shortcuts"></div>
+      </div>
+    </nav>
+    <div class="main-content">
+    <section class="stats" aria-label="Resumen">
+      <article class="stat-platform">
+        <span id="infojobsCount">0</span><small>InfoJobs</small>
+        <label class="platform-selector"><input type="checkbox" name="simplePlatform" value="infojobs" checked><span>Buscar</span></label>
+      </article>
+      <article class="stat-platform">
+        <span id="empleateCount">0</span><small>Empléate</small>
+        <label class="platform-selector"><input type="checkbox" name="simplePlatform" value="empleate" checked><span>Buscar</span></label>
+      </article>
+      <article class="stat-platform">
+        <span id="tecnoempleoCount">0</span><small>Tecnoempleo</small>
+        <label class="platform-selector"><input type="checkbox" name="simplePlatform" value="tecnoempleo" checked><span>Buscar</span></label>
+      </article>
+      <article class="stat-platform">
+        <span id="jobtodayCount">0</span><small>Job Today</small>
+        <label class="platform-selector"><input type="checkbox" name="simplePlatform" value="jobtoday" checked><span>Buscar</span></label>
+      </article>
+      <article class="stat-platform">
+        <span id="infoempleoCount">0</span><small>Infoempleo</small>
+        <label class="platform-selector"><input type="checkbox" name="simplePlatform" value="infoempleo" checked><span>Buscar</span></label>
+      </article>
+      <article class="stat-platform">
+        <span id="eurofirmsCount">0</span><small>Eurofirms</small>
+        <label class="platform-selector"><input type="checkbox" name="simplePlatform" value="eurofirms" checked><span>Buscar</span></label>
+      </article>
+      <article class="stat-platform"><span id="infofeinaCount">0</span><small>Infofeina</small><label class="platform-selector"><input type="checkbox" name="simplePlatform" value="infofeina" checked><span>Buscar</span></label></article>
+      <article class="stat-platform"><span id="feinaactivaCount">0</span><small>Feina Activa</small><label class="platform-selector"><input type="checkbox" name="simplePlatform" value="feinaactiva" checked><span>Buscar</span></label></article>
+    </section>
+    <div class="refresh-status refresh-status-inline" id="refreshStatus" aria-live="polite"></div>
+
+    <section class="toolbar" aria-label="Filtros">
+      <div class="profiles-panel profiles-group is-panel-collapsed">
+        <button class="panel-collapse-toggle toolbar-toggle is-collapsed" type="button" aria-expanded="false" aria-controls="profilesPanelContent">
+          <span><strong>Perfiles</strong></span><span class="toolbar-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m6 15 6-6 6 6"/></svg></span>
+        </button>
+        <div id="profilesPanelContent" class="collapsible-panel-content" hidden>
+        <div class="filter-group-heading">
+          <h2>Crear y guardar perfiles <span class="optional-label">(opcional)</span></h2>
+          <p>Crea, guarda y recupera tus combinaciones de búsqueda y filtros.</p>
+        </div>
+        <div class="search-profiles-grid">
+          <label class="profile-name-field">
+            <span>Nombre del perfil</span>
+            <input id="profileName" type="text" maxlength="60" placeholder="Ej.: Diseño web reciente" autocomplete="off">
+          </label>
+          <label class="profile-select-field">
+            <span>Perfiles guardados</span>
+            <select id="profileSelect"><option value="">Selecciona un perfil…</option></select>
+          </label>
+          <div class="profile-actions">
+            <button id="saveProfile" type="button" class="primary profile-button">Guardar</button>
+            <button id="deleteProfile" type="button" class="secondary danger-button profile-button" disabled>Eliminar</button>
+            <button id="importProfiles" type="button" class="secondary profile-button profile-icon-button" aria-label="Importar perfiles" title="Importar perfiles">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+            </button>
+            <button id="exportProfiles" type="button" class="secondary profile-button profile-icon-button" aria-label="Exportar perfiles" title="Exportar perfiles">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14V3m0 0 4 4m-4-4-4 4M5 17v3h14v-3"/></svg>
+            </button>
+            <input id="profilesFileInput" type="file" accept="application/json,.json" hidden>
+          </div>
+        </div>
+        <p id="profileStatus" class="profile-status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="main-search-panel">
+        <div class="search-panel-header">
+          <button class="panel-collapse-toggle toolbar-toggle search-panel-toggle" type="button" aria-expanded="true" aria-controls="searchPanelContent">
+            <span><strong>Buscar trabajos</strong></span>
+          </button>
+          <button id="addSearchRow" class="add-search-row heading-add-button" type="button" aria-label="Añadir puesto y ciudad">＋</button>
+          <button id="searchPanelToggleIcon" class="toolbar-toggle-icon" type="button" aria-label="Plegar búsqueda de empleo" aria-controls="searchPanelContent" aria-expanded="true">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+          </button>
+        </div>
+        <div id="searchPanelContent" class="collapsible-panel-content">
+        <form id="jobSearchForm" class="main-search-form" role="search">
+          <div id="searchRows" class="search-rows">
+          <div class="search-row" data-infojobs-search-row>
+          <label class="main-search-field">
+            <span>Puesto</span>
+            <span class="main-search-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 4 4"></path></svg>
+              <input id="searchInput" class="infojobs-keyword" type="search" placeholder="Puesto, empresa o palabra clave" autocomplete="off">
+            </span>
+          </label>
+          <label class="main-search-field">
+            <span>Ciudad</span>
+            <span class="main-search-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+              <input id="citySearchInput" class="infojobs-city" type="search" placeholder="Ciudad o localidad" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="citySuggestions" aria-expanded="false">
+              <div id="citySuggestions" class="city-suggestions" role="listbox" hidden></div>
+            </span>
+          </label>
+          <span class="search-row-open-controls" hidden>
+            <select class="search-row-platform" aria-label="Plataforma donde abrir la búsqueda"></select>
+            <button class="open-search-row-url" type="button" aria-label="Abrir esta búsqueda en la plataforma seleccionada" title="Abrir URL">↗</button>
+          </span>
+          <button class="remove-search-row" type="button" aria-label="Eliminar este puesto y ciudad" title="Eliminar">🗑</button>
+          </div>
+          </div>
+          <div class="advanced-url-section">
+            <div class="advanced-url-heading">
+              <strong>Avanzado</strong>
+              <button id="addAdvancedUrlRow" class="add-search-row heading-add-button" type="button" aria-label="Añadir otra URL avanzada">＋</button>
+              <small>Buscador a partir de URL</small>
+            </div>
+            <div id="advancedUrlRows" class="advanced-url-rows">
+              <div class="advanced-url-row" data-infojobs-url-row>
+                <input class="infojobs-url-description" type="text" placeholder="Descripción" aria-label="Descripción de la URL">
+                <input class="infojobs-direct-url" type="url" placeholder="URL de búsqueda" aria-label="URL avanzada de búsqueda">
+                <button class="open-advanced-url" type="button" aria-label="Abrir esta URL" title="Abrir URL">↗</button>
+                <button class="remove-advanced-url" type="button" aria-label="Eliminar esta URL" title="Eliminar">🗑</button>
+              </div>
+            </div>
+          </div>
+          <div class="search-actions">
+            <button class="main-search-button" type="submit">Buscar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+      <div class="toolbar-header">
+        <button id="filterToggle" class="toolbar-toggle is-collapsed" type="button" aria-expanded="false" aria-controls="filtersContent">
+          <span><strong>Filtrar trabajos cargados</strong></span>
+        </button>
+        <button id="advancedFiltersIndicator" class="advanced-filters-indicator" type="button" hidden></button>
+        <div class="toolbar-header-actions">
+          <div class="quick-filters" aria-label="Filtros rápidos">
+            <label class="quick-favorite-filter" title="Mostrar solo favoritos">
+              <input id="favoritesOnlyFilter" type="checkbox" aria-label="Mostrar solo favoritos">
+              <span aria-hidden="true">☆</span>
+            </label>
+            <label class="quick-seen-filter"><input id="showSeenFilter" type="checkbox"> Vistos</label>
+          </div>
+          <button id="filterToggleIcon" class="toolbar-toggle-icon is-collapsed" type="button" aria-label="Abrir filtros avanzados" aria-controls="filtersContent" aria-expanded="false">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div id="filtersContent" hidden>
+      <p class="filters-caution" role="note">
+        <span aria-hidden="true">ⓘ</span>
+        Algunos filtros pueden no aplicarse a todas las plataformas, ya que ciertos datos solo están disponibles después de abrir el detalle de la oferta. Úsalos con precaución.
+      </p>
+      <div class="filter-group search-group">
+        <div class="filter-group-heading">
+          <h2>Excluir palabras</h2>
+        </div>
+        <div class="search-grid single-search-grid">
+          <label class="search-field exclude-field">
+            <input id="excludeInput" type="search" placeholder="Ej.: crypto, apuestas, llamadas…" aria-label="Excluir palabras" autocomplete="off">
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="basic-filters-grid">
+          <div class="filter-field source-filter-field">
+            <label for="sourceFilter">Fuente</label>
+            <select id="sourceFilter"><option value="">Añadir plataforma…</option></select>
+            <div id="selectedSources" class="selected-source-chips" aria-live="polite"></div>
+          </div>
+          <label>
+            <span>Modalidad</span>
+            <select id="typeFilter">
+              <option value="">Todas</option>
+              <option value="presencial">Presencial</option>
+              <option value="híbrido">Híbrido</option>
+              <option value="teletrabajo">Teletrabajo</option>
+            </select>
+          </label>
+          <label>
+            <span>Ordenar por</span>
+            <select id="sortOrder">
+              <option value="newest">Más recientes</option>
+              <option value="oldest">Más antiguos</option>
+              <option value="title">Título A–Z</option>
+              <option value="country">País A–Z</option>
+              <option value="price-desc">Salario: más alto primero</option>
+              <option value="price-asc">Salario: más bajo primero</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="range-filters-grid">
+          <div class="range-filter-card price-range-field">
+            <span>Rango salarial</span>
+            <div class="price-values" aria-live="polite">
+              <strong id="minPriceValue">0 €</strong>
+              <strong id="maxPriceValue">—</strong>
+            </div>
+            <div id="priceRangeTrack" class="price-range-track">
+              <input id="minPriceFilter" type="range" min="0" max="154" value="0" aria-label="Precio mínimo">
+              <input id="maxPriceFilter" type="range" min="0" max="154" value="154" aria-label="Precio máximo">
+            </div>
+          </div>
+          <div class="range-filter-card date-range-field">
+            <span>Fecha de publicación</span>
+            <div class="date-value" aria-live="polite"><strong id="dateFilterValue">Cualquier fecha</strong></div>
+            <div id="dateRangeTrack" class="date-range-track">
+              <input id="dateFilter" type="range" min="1" max="42" value="42" aria-label="Antigüedad máxima del anuncio">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar-actions">
+        <button id="clearFilters" type="button" class="secondary clear-filters">Limpiar todos los filtros</button>
+      </div>
+      </div>
+    </section>
+
+    <div class="loaded-text-search-floating" role="search">
+      <input id="contentSearchFilter" type="search" placeholder="Buscar texto…" aria-label="Buscar en los trabajos cargados" autocomplete="off">
+    </div>
+
+    <section id="loading" class="state">Cargando registros…</section>
+    <section id="error" class="state error" hidden></section>
+    <div id="resultsSummary" class="results-summary" aria-live="polite"></div>
+    <section id="favoriteManagement" class="favorite-management" hidden>
+      <div>
+        <strong>Gestión de favoritos</strong>
+        <span id="favoriteManagementStatus">Comprueba si los anuncios guardados siguen disponibles.</span>
+      </div>
+      <div class="favorite-management-actions">
+        <button id="checkFavoriteLinks" type="button" class="secondary">Comprobar enlaces</button>
+        <button id="cleanBrokenFavorites" type="button" class="secondary danger-button">Limpiar rotos</button>
+        <button id="cleanOldFavorites" type="button" class="secondary danger-button">Limpiar antiguos</button>
+      </div>
+    </section>
+    <section id="jobGrid" class="job-grid" aria-live="polite"></section>
+
+    <nav id="pagination" class="pagination" aria-label="Paginación" hidden>
+      <button id="previousPage" type="button" class="secondary">← Anterior</button>
+      <span id="pageInfo"></span>
+      <button id="nextPage" type="button" class="secondary">Siguiente →</button>
+    </nav>
+    </div>
+  </main>
+
+  <dialog id="jobDialog">
+    <button id="closeDialog" class="dialog-close" type="button" aria-label="Cerrar detalle">×</button>
+    <div id="dialogContent"></div>
+    <nav class="dialog-job-navigation" aria-label="Navegar entre trabajos">
+      <button id="dialogPreviousJob" type="button" aria-label="Trabajo anterior" title="Trabajo anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <span id="dialogJobPosition"></span>
+      <button id="dialogNextJob" type="button" aria-label="Trabajo siguiente" title="Trabajo siguiente">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </nav>
+    <button id="dialogFavoriteToggle" class="dialog-favorite-toggle" type="button" aria-label="Añadir a favoritos" aria-pressed="false"><span aria-hidden="true">☆</span></button>
+    <label class="dialog-seen-toggle"><input id="dialogSeenToggle" type="checkbox"> Visto</label>
+    <a id="dialogExternalLink" class="details dialog-external" target="_blank" rel="noopener noreferrer" hidden>Abrir anuncio ↗</a>
+  </dialog>
+
+  <dialog id="interestLinksDialog" class="interest-links-dialog">
+    <button id="closeInterestLinks" class="dialog-close" type="button" aria-label="Cerrar enlaces de interés">×</button>
+    <div class="interest-links-dialog-content">
+      <div class="interest-links-title-row">
+        <h2>Enlaces de interés</h2>
+        <div class="interest-links-file-actions">
+          <button id="importInterestLinks" type="button" class="interest-title-icon" aria-label="Importar enlaces" title="Importar enlaces">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"></path></svg>
+          </button>
+          <button id="exportInterestLinks" type="button" class="interest-title-icon" aria-label="Exportar enlaces" title="Exportar enlaces">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14V3m0 0 4 4m-4-4-4 4M5 17v3h14v-3"></path></svg>
+          </button>
+          <input id="interestLinksFileInput" type="file" accept="application/json,.json" hidden>
+        </div>
+      </div>
+      <p>Organiza por apartados las páginas que quieras consultar más adelante.</p>
+      <form id="interestSectionForm" class="interest-section-form">
+        <label>
+          <span>Nuevo apartado</span>
+          <input id="interestSectionName" type="text" maxlength="60" placeholder="Ej.: Portales de empleo" required>
+        </label>
+        <button type="submit" class="secondary">Crear apartado</button>
+      </form>
+      <form id="interestLinkForm" class="interest-link-form">
+        <input id="interestLinkEditIndex" type="hidden">
+        <input id="interestLinkEditSection" type="hidden">
+        <label>
+          <span>Apartado</span>
+          <select id="interestLinkSection" required></select>
+        </label>
+        <label>
+          <span>Descripción</span>
+          <input id="interestLinkDescription" type="text" maxlength="80" placeholder="Ej.: Portal de empleo local" required>
+        </label>
+        <label>
+          <span>URL</span>
+          <input id="interestLinkUrl" type="url" maxlength="2000" placeholder="https://…" required>
+        </label>
+        <div class="interest-link-form-actions">
+          <button id="cancelInterestLinkEdit" type="button" class="secondary" hidden>Cancelar</button>
+          <button type="submit" class="primary">Guardar enlace</button>
+        </div>
+      </form>
+      <p id="interestLinksStatus" class="interest-links-status" aria-live="polite"></p>
+      <div id="interestLinksList" class="interest-links-list"></div>
+    </div>
+  </dialog>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

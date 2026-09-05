@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-09-05T09:40:15.920Z",
+  "profiles": [
+    {
+      "name": "prova1",
+      "search": "it",
+      "city": "Girona",
+      "contentSearch": "",
+      "exclude": "",
+      "source": "",
+      "sources": [],
+      "sourcesActive": false,
+      "type": "",
+      "sort": "newest",
+      "priceScaleVersion": 2,
+      "minPrice": 0,
+      "maxPrice": 100000,
+      "date": 42,
+      "showSeen": false,
+      "favoritesOnly": false,
+      "infojobsSearches": [
+        {
+          "keyword": "it",
+          "city": "Girona"
+        }
+      ],
+      "infojobsUrls": [],
+      "selectedPlatforms": [
+        "infojobs"
+      ]
+    }
+  ]
+}

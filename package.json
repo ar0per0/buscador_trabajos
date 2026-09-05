@@ -1,0 +1,26 @@
+{
+  "name": "web-trabajos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Panel local de trabajos publicados en distintas webs",
+  "scripts": {
+    "start": "node web/server.js",
+    "refresh": "node scrape_infojobs.js",
+    "refresh:infojobs": "node scrape_infojobs.js",
+    "refresh:empleate": "node scrape_empleate.js",
+    "refresh:tecnoempleo": "node scrape_tecnoempleo.js",
+    "refresh:jobtoday": "node scrape_jobtoday.js",
+    "refresh:infoempleo": "node scrape_infoempleo.js",
+    "refresh:eurofirms": "node scrape_eurofirms.js",
+    "refresh:infofeina": "node scrape_infofeina.js",
+    "refresh:feinaactiva": "node scrape_feinaactiva.js",
+    "check": "node --check web/server.js && node --check web/app.js && node --check scrape_infojobs.js && node --check scrape_empleate.js && node --check scrape_tecnoempleo.js && node --check scrape_jobtoday.js && node --check scrape_infoempleo.js && node --check scrape_eurofirms.js && node --check scrape_infofeina.js && node --check scrape_feinaactiva.js && node --check search_jobs.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.9.0"
+  }
+}
