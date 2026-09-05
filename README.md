@@ -1,5 +1,7 @@
 # Buscador Trabajos
 
+Proyecto construido con **OpenClaw + ChatGPT Codex**.
+
 Panel local para buscar, revisar, guardar y filtrar ofertas públicas de empleo. 
 
 Actualmente integra:
@@ -13,7 +15,7 @@ Actualmente integra:
 - [Feina Activa](https://feinaactiva.gencat.cat/es/home)
 
 Captura de la aplicación:
-![Diagrama](./captura_app_proyectos_freelancer.png)
+![APP](./captura_app.png)
 
 ## Inicio rápido
 
