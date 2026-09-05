@@ -1,6 +1,58 @@
-# Trabajos
+# Buscador Trabajos
 
-Panel local para buscar, revisar, guardar y filtrar ofertas públicas de empleo. Integra InfoJobs, Empléate, Tecnoempleo, Job Today, Infoempleo, Eurofirms, Infofeina y Feina Activa sin requerir cuentas ni credenciales.
+Panel local para buscar, revisar, guardar y filtrar ofertas públicas de empleo. 
+
+Actualmente integra:
+- [InfoJobs](https://www.infojobs.net/)
+- [Empléate](https://www.empleate.gob.es/empleo/#/)
+- [Tecnoempleo](https://www.tecnoempleo.com/)
+- [Job Today](https://jobtoday.com/)
+- [Infoempleo](https://www.infoempleo.com/)
+- [Eurofirms](https://www.eurofirms.com/es/en/)
+- [Infofeina](https://www.infofeina.com/)
+- [Feina Activa](https://feinaactiva.gencat.cat/es/home)
+
+Captura de la aplicación:
+![Diagrama](./captura_app_proyectos_freelancer.png)
+
+## Inicio rápido
+
+### 1. Crear `docker-compose.yml`
+
+Usa esta configuración:
+
+```yaml
+
+services:
+  buscador_trabajos:
+    image: ar0per0/buscador_trabajos:latest
+    container_name: buscador_trabajos
+    restart: unless-stopped
+    init: true
+    ports:
+      - "8085:8081"
+    volumes:
+      - buscador_trabajos_data:/data
+
+volumes:
+  buscador_trabajos_data:
+```
+
+### 2. Levantar
+
+Ejecuta:
+
+```bash
+docker compose up -d
+```
+Acceso:
+
+```text
+http://IP_DEL_EQUIPO:8085
+```
+
+---
+
 
 ## Funciones principales
 
