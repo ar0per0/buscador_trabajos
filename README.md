@@ -15,7 +15,7 @@ Actualmente integra:
 - [Feina Activa](https://feinaactiva.gencat.cat/es/home)
 
 Captura de la aplicación:
-![APP](./captura_app.png)
+![APP](./captura2_app.png)
 
 ## Inicio rápido
 
